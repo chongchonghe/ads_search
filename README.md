@@ -4,7 +4,8 @@ A simple NASA ADS query tool that works.
 
 ## Key Features
 
--  Copy bibtex into clipboard or open the ads entry in browser. (Tested on macOS)
+- Copy bibtex into clipboard or open the ads entry in browser. (Tested on macOS)
+- Possibly the easiest workflow possible: copy a MNRAS/ApJ style reference, e.g. `1955, ApJ, 121, 161`, as the arguments of the `ads` command, and the bibtex entry is copied into your clipboard.
 
 ## How to Use
 
@@ -25,6 +26,15 @@ $ pip install -e .
 
 # Run the test
 $ ads -t
+```
+
+Example use:
+
+```bash
+>>> ads 1955, ApJ, 121, 161
+>>> ads 2002, A\&A, 382, 28
+>>> ads 2002, 'A&A' 382, 28
+>>> ads -w 1955, ApJ, 121, 161
 ```
 
 ## Credits
