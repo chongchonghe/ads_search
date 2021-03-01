@@ -1,8 +1,10 @@
 # ads_search
 
+A simple NASA ADS query tool that works.
+
 ## Key Features
 
-- Query NASA database and copy bibtex into clipboard. (Clipboard feature is tested to be working on macOS)
+-  Copy bibtex into clipboard or open the ads entry in browser. (Tested on macOS)
 
 ## How to Use
 
@@ -38,7 +40,7 @@ This software uses the following open source packages:
 
 ## Author
 
-Chong-Chong He ([che1234@umd.edu](none))
+Chong-Chong He ([che1234@umd.edu]())
 
 ## License
 
