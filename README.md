@@ -37,9 +37,9 @@ usage: ads [-h] [-b BIBLIOGRAPHY BIBLIOGRAPHY BIBLIOGRAPHY BIBLIOGRAPHY] [-ay AY
 A simple ads parser that works.
 
 Can do one of the following:
-1. Find the url of a paper on ADS witha given a ApJ/MNRAS style bibliography
-2. Find the url of a paper on ADS witha given the author and year
-3. Add a article to BibDesk given a article identifier
+1. Find the url of a paper on ADS given an ApJ/MNRAS style bibliography.
+2. Find the url of a paper on ADS given an author and year.
+3. Add a article to BibDesk given an article identifier.
 
 Author: Chong-Chong He (che1234@umd.edu)
 
