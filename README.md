@@ -11,8 +11,6 @@ A simple NASA ADS query tool that works.
 
 Clone this repository and install it via `pip`:
 
-To clone and use this application, you'll need [Git](https://git-scm.com) and Python installed on your computer. From your command line:
-
 ```bash
 # Clone this repository
 $ git clone https://github.com/chongchonghe/ads_search.git
@@ -20,7 +18,10 @@ $ git clone https://github.com/chongchonghe/ads_search.git
 # Go into the repository
 $ cd ads_search
 
-# OR, alternatively,
+# Install
+$ python setup.py
+
+# OR, alternatively, install a link to your python package. You will need this folder to be there permanently.
 $ pip install -e .
 
 # Run a test
