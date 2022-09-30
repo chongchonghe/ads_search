@@ -113,9 +113,14 @@ Author: Chong-Chong He (che1234@umd.edu)
 
 Kinds
 - ay: author year. Open a browser tab and direct to an ADS page of the given article specified by first author and year. Two-digit number are idendified as 19xx if bigger than 50 else as 20xx
-- r: "bibliography. Open a browser tab and direct to an ADS page of the given article specified by a ApJ/MNRAS style bibliography. The tracing commas will be ignored. Replace '&' with '\&' in the journal name. e.g."
-- a: ads article identifier. "article identifier. Add article to bibdesk. Accept bibcode/arxiv id/doi as the article_identifier. Equivalent to 'ads2bibdesk ARTICLE_IDENTIFIER'."
-    
+- r: "bibliography. Open a browser tab and direct to an ADS page "
+                        "of the given article specified by a ApJ/MNRAS style"
+                        " bibliography. "
+                        "The tracing commas will be ignored. Replace '&' "
+                        "with '\&' in the journal name. e.g.\n"
+- a: ads article identifier. "article identifier. Add article to bibdesk. Accept bibcode/arxiv "
+                        "id/doi as the article_identifier. Equivalent to "
+                        "'ads2bibdesk ARTICLE_IDENTIFIER'. e.g.\n"
 Examples:
 >>> {0} ay Salpeter55
 >>> {0} ay Salpeter1955
@@ -126,7 +131,7 @@ Examples:
         formatter_class=RawTextHelpFormatter)
     # ["bibliography", 'year', 'vol', 'page']
     parser.add_argument('kind', help="one of [ay, r, b]")
-    parser.add_argument('params', help="parameters", nargs="+")
+    parser.add_argument('params', help="parameters", nargs="?")
     # parser.add_argument('-nob', action='store_true',
     #                     help="no browser. Toggle off 'open url in borwser'")
     # parser.add_argument('-t', action='store_true',
@@ -143,10 +148,6 @@ def validate_ads(year, jour, vol, page):
         page = page[1:]
     if jour=='Science':
         jour = 'Sci'
-    if '&' in jour:
-        jour = jour.replace('&', "%26")
-    if 'nat' in jour.lower():
-        jour = "Natur"
     return {"year": year, "jour": jour, "vol": vol, "page": page}
 
 def clean_args(arg):
@@ -225,14 +226,14 @@ def main_v3():
         sys.exit(os.system("ads2bibdesk " + parse.a))
         return
     if parse.kind == "r":
-        args = {"year": parse.params[0], "jour": parse.params[1], "vol":
-            parse.params[2], "page": parse.params[3]}
+        args = {"year": parse.b[0], "jour": parse.b[1], "vol": parse.b[2], "page": parse.b[3]}
         args = clean_args(args)         # dict
         args = validate_ads(**args)     # dict
         print("Parsed input:", args)
-        url = geturl(args)
-        print("opening " + url)
-        os.system("open " + url)
+        print("opening " + geturl(args))
+        if not parse.nob:
+            os.system("open " + geturl(args))
+        # print(get_ads(**arg))
     if parse.kind == "ay":
         theauthor = parse.params[0]
         if theauthor[-2:].isdigit():
@@ -253,10 +254,7 @@ def main_v3():
         print("opening " + url)
         os.system("open " + url)
 
-def main():
-    print("main")
 
 if __name__ == '__main__':
-    # print("Hello, world!")
     # main_v2()
     main_v3()
