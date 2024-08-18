@@ -3,6 +3,9 @@
 import sys, os
 from argparse import ArgumentParser, RawTextHelpFormatter
 
+# SORT = "date"
+SORT = "citation_count"
+
 def get_ads(year, jour, vol, page):
 
     if not year.isdigit():
@@ -156,7 +159,8 @@ def clean_args(arg):
     return arg
 
 def geturl(arg):
-    return "https://ui.adsabs.harvard.edu/search/q=bibstem%3A{jour}%20year%3A{year}%20volume%3A{vol}%20page%3A{page}&sort=date%20desc%2C%20bibcode%20desc&p_=0".format(**arg)
+    theurl = f"https://ui.adsabs.harvard.edu/search/q=bibstem%3A{{jour}}%20year%3A{{year}}%20volume%3A{{vol}}%20page%3A{{page}}&sort={SORT}%20desc%2C%20bibcode%20desc&p_=0"
+    return theurl.format(**arg)
 
 def main_v2():
     # if len(sys.argv) == 2:
@@ -249,7 +253,7 @@ def main_v3():
         print("Parsed input: author = {}, year = {}".format(author, year))
         # url = "https://ui.adsabs.harvard.edu/search/q=year%3A{year}%20author%3A%22%5E{author}%22&sort=date%20desc%2C%20bibcode%20desc&p_=0".format(year=year, author=author)
         # The following url contains a filter: Collection:+astronomy
-        url = "'https://ui.adsabs.harvard.edu/search/filter_database_fq_database=AND&filter_database_fq_database=database%3A%22astronomy%22&fq=%7B!type%3Daqp%20v%3D%24fq_database%7D&fq_database=(database%3A%22astronomy%22)&p_=0&q=year%3A{year}%20author%3A%22%5E{author}%22&sort=date%20desc%2C%20bibcode%20desc'".format(year=year, author=author)
+        url = "'https://ui.adsabs.harvard.edu/search/filter_database_fq_database=AND&filter_database_fq_database=database%3A%22astronomy%22&fq=%7B!type%3Daqp%20v%3D%24fq_database%7D&fq_database=(database%3A%22astronomy%22)&p_=0&q=year%3A{year}%20author%3A%22%5E{author}%22&sort={thesort}%20desc%2C%20bibcode%20desc'".format(year=year, author=author, thesort=SORT)
         print("opening " + url)
         os.system("open " + url)
 
